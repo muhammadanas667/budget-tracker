@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>budget tracker</title>
+</head>
+<body>
+    <div>
+        <h1>Budget tracker</h1>
+        <p>Your daily calculation goes here</p>
+    </div>
+    <div id="balance">
+        <h2>Balance: <span id="totalBalance">0</span></h2>
+        <p>Income: <span id="totalIncome">0</span></p>
+        <p>Expense: <span id="totalExpense">0</span></p>
+    </div>
+    <div>
+        <form>
+            <input type="text" id="name" placeholder="Transaction name">
+            <input type="number" id="amount" placeholder="Amount">
+            <select name="catagory" id="type">
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+        </select>
+        </form>
+    </div>
+    <div>
+        <button id="submitBtn">Submit</button>
+        
+    </div>
+    <div>
+        <ol id="transList"></ol>
+    </div>
+</body>
+</html>
