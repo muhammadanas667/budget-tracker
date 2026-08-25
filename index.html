@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>budget tracker</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="container">
     <div>
         <h1>Budget tracker</h1>
         <p>Your daily calculation goes here</p>
@@ -19,16 +21,35 @@
         <form>
             <input type="text" id="name" placeholder="Transaction name">
             <input type="number" id="amount" placeholder="Amount">
-            <select name="catagory" id="type">
+            <select name="category" id="type">
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
-        </select>
-        <button id="submitBtn" type="button">Submit</button>
+            </select>
         </form>
     </div>
+    <button id="submitBtn" type="button">Submit</button>
     <div>
         <ol id="transList"></ol>
     </div>
+</div>
     <script src="app.js"></script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

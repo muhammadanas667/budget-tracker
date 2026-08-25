@@ -14,29 +14,35 @@ function updateSummary(){
         let intialBalance = 0;
         let incomeSum = transactions.filter((transaction) => transaction.type === "income").reduce((sum, t) => sum + Number(t.amount), intialBalance)
         let expenseSum = transactions.filter((transaction) => transaction.type === "expense").reduce((sum, t) => sum + Number(t.amount), intialBalance)
-        let balance = incomeSum-expenseSum;
+        let balance = incomeSum+expenseSum;
         totalBalance.textContent = balance;
         totalIncome.textContent = incomeSum;
         totalExpense.textContent = expenseSum;
     }
 
 function renderTransaction(){
-        transList.innerHTML = "";
-        for(let i =0; i<transactions.length; i++){
-            const t = transactions[i]
-            const li = document.createElement('li')
-            li.textContent = `${t.name}, ${t.amount}, (${t.type})`
-            transList.appendChild(li)
-            const deleteBtn = document.createElement('button')
-            deleteBtn.textContent = 'Delete';
-            deleteBtn.onclick = function(){
+    transList.innerHTML = "";
+    for(let i = 0; i < transactions.length; i++){
+        const t = transactions[i];
+        
+        const li = document.createElement('li');
+        
+        const span = document.createElement('span');
+        span.textContent = `${t.name} - ${t.amount} (${t.type})`;
+        
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.onclick = function(){
             transactions = transactions.filter(trans => trans.id !== t.id);
             updateSummary();
             renderTransaction();
         }
-        li.appendChild(deleteBtn)
-        }   
+        
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+        transList.appendChild(li);
     }
+}
 
 submitBtn.addEventListener('click', function(){
     let nameValue = nameInput.value;
