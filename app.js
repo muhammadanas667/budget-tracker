@@ -14,7 +14,7 @@ function updateSummary(){
         let intialBalance = 0;
         let incomeSum = transactions.filter((transaction) => transaction.type === "income").reduce((sum, t) => sum + Number(t.amount), intialBalance)
         let expenseSum = transactions.filter((transaction) => transaction.type === "expense").reduce((sum, t) => sum + Number(t.amount), intialBalance)
-        let balance = incomeSum+expenseSum;
+        let balance = incomeSum - expenseSum;
         totalBalance.textContent = balance;
         totalIncome.textContent = incomeSum;
         totalExpense.textContent = expenseSum;
@@ -44,6 +44,12 @@ function renderTransaction(){
     }
 }
 
+amountInput.addEventListener('keydown', function(event){
+    if(event.key === '-' || event.key === '+' || event.key === 'e' || event.key === '*'){
+        event.preventDefault();
+    }
+})
+
 submitBtn.addEventListener('click', function(){
     let nameValue = nameInput.value;
     let amountValue = amountInput.value;
@@ -51,6 +57,11 @@ submitBtn.addEventListener('click', function(){
 
     if(!nameValue  || !amountValue){
         alert ("You are missing something!");
+        return;
+    }
+
+    if (amountValue <=0){
+        alert("Amount must be greater then zero!");
         return;
     }
 
