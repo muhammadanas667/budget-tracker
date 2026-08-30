@@ -14,7 +14,7 @@ function updateSummary(){
         let intialBalance = 0;
         let incomeSum = transactions.filter((transaction) => transaction.type === "income").reduce((sum, t) => sum + Number(t.amount), intialBalance)
         let expenseSum = transactions.filter((transaction) => transaction.type === "expense").reduce((sum, t) => sum + Number(t.amount), intialBalance)
-        let balance = incomeSum - expenseSum;
+        let balance = incomeSum + expenseSum;
         totalBalance.textContent = balance;
         totalIncome.textContent = incomeSum;
         totalExpense.textContent = expenseSum;
