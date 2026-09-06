@@ -1,5 +1,7 @@
 console.log("JS file loaded")
 
+
+// Getting all the HTML elements by their IDs using document.getElementByID
 let transactions = [];
 const submitBtn = document.getElementById('submitBtn')
 const nameInput = document.getElementById('name')
@@ -10,6 +12,8 @@ const totalBalance = document.getElementById('totalBalance')
 const totalIncome = document.getElementById('totalIncome')
 const totalExpense = document.getElementById('totalExpense')
 
+
+//The updateSummary function will update the total balance, total income and total expense in real-time
 function updateSummary(){
         let intialBalance = 0;
         let incomeSum = transactions.filter((transaction) => transaction.type === "income").reduce((sum, t) => sum + Number(t.amount), intialBalance)
@@ -20,6 +24,8 @@ function updateSummary(){
         totalExpense.textContent = expenseSum;
     }
 
+
+// The renderTransaction function will take care of the creating and reseting lists, creation of text element, creation of delete button and showing everything on the page.
 function renderTransaction(){
     transList.innerHTML = "";
     for(let i = 0; i < transactions.length; i++){
@@ -44,12 +50,18 @@ function renderTransaction(){
     }
 }
 
+
+//This eventListener will stop user from entering the symbols and signs. For now it just contains few signs
 amountInput.addEventListener('keydown', function(event){
     if(event.key === '-' || event.key === '+' || event.key === 'e' || event.key === '*'){
         event.preventDefault();
     }
 })
 
+
+/* This eventListener will add functionality to submit button. Upon entering the invalid or no amount it will show an alert. 
+   At the end this eventListener will create a unique ID for each transaction and calls the above 2 functions.
+*/
 submitBtn.addEventListener('click', function(){
     let nameValue = nameInput.value;
     let amountValue = amountInput.value;
