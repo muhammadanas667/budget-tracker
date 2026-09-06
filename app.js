@@ -1,7 +1,7 @@
 console.log("JS file loaded")
 
 
-// Getting all the HTML elements by their IDs using document.getElementByID
+// Get the HTML elements by their IDs using document.getElementById().
 let transactions = [];
 const submitBtn = document.getElementById('submitBtn')
 const nameInput = document.getElementById('name')
@@ -13,7 +13,7 @@ const totalIncome = document.getElementById('totalIncome')
 const totalExpense = document.getElementById('totalExpense')
 
 
-//The updateSummary function will update the total balance, total income and total expense in real-time
+// The updateSummary function updates the total balance, income, and expenses in real time.
 function updateSummary(){
         let intialBalance = 0;
         let incomeSum = transactions.filter((transaction) => transaction.type === "income").reduce((sum, t) => sum + Number(t.amount), intialBalance)
@@ -25,7 +25,10 @@ function updateSummary(){
     }
 
 
-// The renderTransaction function will take care of the creating and reseting lists, creation of text element, creation of delete button and showing everything on the page.
+/* 
+ The renderTransaction function handles creating and resetting the transaction list,
+ creating text elements and delete buttons, and displaying the transactions on the page.
+*/
 function renderTransaction(){
     transList.innerHTML = "";
     for(let i = 0; i < transactions.length; i++){
@@ -51,7 +54,10 @@ function renderTransaction(){
 }
 
 
-//This eventListener will stop user from entering the symbols and signs. For now it just contains few signs
+/*
+ This event listener prevents the user from entering certain invalid characters.
+ For now, it only blocks a few specific symbols.
+*/
 amountInput.addEventListener('keydown', function(event){
     if(event.key === '-' || event.key === '+' || event.key === 'e' || event.key === '*'){
         event.preventDefault();
@@ -59,8 +65,10 @@ amountInput.addEventListener('keydown', function(event){
 })
 
 
-/* This eventListener will add functionality to submit button. Upon entering the invalid or no amount it will show an alert. 
-   At the end this eventListener will create a unique ID for each transaction and calls the above 2 functions.
+/* 
+ * This event listener handles the form submission.
+ * If the user enters an invalid amount or leaves the amount empty, an alert is shown.
+ * Otherwise, it generates a unique ID for the transaction and calls the two functions above.
 */
 submitBtn.addEventListener('click', function(){
     let nameValue = nameInput.value;
@@ -78,7 +86,7 @@ submitBtn.addEventListener('click', function(){
     }
 
     let transaction = {id: Date.now(), name : nameValue, amount: amountValue, type: typeValue};
-    //We use Date.now() at id is because it generates unique number based on current timestamp.
+    // We use Date.now() for the ID because it generates a unique number based on the current timestamp.
     transactions.push(transaction)
     updateSummary();
     renderTransaction();
